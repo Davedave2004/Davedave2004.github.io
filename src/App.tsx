@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import './App.css';
+import './App.scss';
 import './components/CustomInput'
+import { Header } from './components/Header';
 import { CustomInput } from './components/CustomInput';
 
 function App() {
@@ -20,17 +21,17 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <section>
+      <div id="top"></div>
+      <Header />
+      <section id="components">
         <CustomInput regexType='number' />
         <br />
         <CustomInput regExp={/^\d{0,11}$/} />
         <br />
         <br />
-        <br />
         <h1>Set your custom regex here:</h1><input onChange={handleChange} />
         <CustomInput regExp={customRegex} />
-        <h2 ref={refContainer}></h2>
+        <h2 ref={refContainer}>regex input status will appear here</h2>
       </section>
     </div>
   );
