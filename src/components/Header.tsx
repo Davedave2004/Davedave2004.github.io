@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from '../img/logo.png';
+import '../styles/Header.scss';
 
 type navItem = {
     label: string;
@@ -30,6 +31,10 @@ export function Header(props: headerProps) {
         {
             label: 'Components',
             href: '#components'
+        },
+        {
+            label: 'To Do',
+            href: '#todo'
         }
     ];
 
@@ -37,14 +42,16 @@ export function Header(props: headerProps) {
 
     return (
         <header>
-            <a href={logoNav.href}>
+            <a className="logo-link" href={logoNav.href}>
                 <img src={logoNav.src} alt="header logo" />
-                <label>{title}</label>
             </a>
+            <label>{title}</label>
             <nav>
+                <ul>
                 {navItems.map((item) => (
-                    <a className="navItem" href={item.href}>{item.label}</a>
+                    <li><a className="navItem" href={item.href}>{item.label}</a></li>
                 ))}
+                </ul>
             </nav>
       </header>
     )
