@@ -33,18 +33,18 @@ function App() {
       <section id="components">
         <h1>Components</h1>
         <CustomInput regexType='number' />
-        <br />
         <CustomInput regExp={/^\d{0,11}$/} />
-        <br />
-        <br />
         <h1>Set your custom regex here:</h1><input onChange={handleChange} />
         <CustomInput regExp={customRegex} />
         <h2 ref={refContainer}>regex input status will appear here</h2>
       </section>
-      <section id="todo">
+      <section id="todo" className="last-section">
         <h1>React To-Do List</h1>
         <ToDoList />
       </section>
+      <footer>
+        This is my footer
+      </footer>
     </div>
   );
 }
