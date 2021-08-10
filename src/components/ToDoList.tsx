@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { EdittableList } from './EdittableList';
+import '../styles/ToDoList.scss';
+
 
 type listItem = {
     content: string;
@@ -10,7 +12,9 @@ export function ToDoList() {
     const [newItem, setNewItem] = useState('');
     const [items, setItems] = useState<listItem[]>([]);
 
-    const addItem = () => {
+    const addItem = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+
         setItems((prevItems: listItem[]) => {
             return [
                 ...prevItems,
@@ -44,11 +48,10 @@ export function ToDoList() {
     return (
         <div className="todo-list">
             <section className="input-container">
-                <form>
+                <form onSubmit={addItem}>
                     <input value={newItem} type="text" placeholder="what to do?" onChange={handleChange} autoComplete="off" tabIndex={0}/>
-                    <button onClick={addItem} className="btn btn--confirm" title="Add new item" aria-label="Add a new item to the list" tabIndex={0}>+</button>
+                    <button className="btn btn--confirm" title="Add new item" aria-label="Add a new item to the list" tabIndex={0}>+</button>
                 </form>
-                
             </section>
             <section className="list-container">
                 <EdittableList items={items} handleUpdate={updateItem} handleDelete={deleteItem}/>

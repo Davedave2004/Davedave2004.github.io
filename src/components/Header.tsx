@@ -33,6 +33,10 @@ export function Header(props: headerProps) {
             href: '#components'
         },
         {
+            label: 'Card',
+            href: '#card'
+        },
+        {
             label: 'To Do',
             href: '#todo'
         }
@@ -48,8 +52,8 @@ export function Header(props: headerProps) {
             <label>{title}</label>
             <nav>
                 <ul>
-                {navItems.map((item) => (
-                    <li><a className="navItem" href={item.href}>{item.label}</a></li>
+                {navItems.map((item, index) => (
+                    <li key={index}><a className="navItem" href={item.href}>{item.label}</a></li>
                 ))}
                 </ul>
             </nav>

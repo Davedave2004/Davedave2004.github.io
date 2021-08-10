@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface customInputProps extends React.HTMLProps<HTMLInputElement> {
     regexType?: string;
@@ -8,7 +8,6 @@ interface customInputProps extends React.HTMLProps<HTMLInputElement> {
 export function CustomInput(props: customInputProps) {
     const [input, setInput] = useState('');
     const [regExp, setRegExp] = useState(/.?/);
-    const refContainer = useRef<HTMLHeadingElement>(null);
 
     // Apply regex value if available from props
     useEffect(() => {
@@ -19,11 +18,10 @@ export function CustomInput(props: customInputProps) {
         type RegexName = keyof typeof availableRegexTypes;
 
         if (props.regExp) {
+            console.log(props.regExp);
             setRegExp(props.regExp);
-            if (refContainer.current) refContainer.current.textContent = `I am using your regex ${props.regExp.toString()}` ;
         } else if(props.regexType && props.regexType in availableRegexTypes) {
             setRegExp(availableRegexTypes[props.regexType as RegexName]);
-            if (refContainer.current) refContainer.current.textContent = `I am using type ${props.regexType}`;
         }
     }, [props.regexType, props.regExp])
 
@@ -39,16 +37,12 @@ export function CustomInput(props: customInputProps) {
 
     // Do not set attributes that might produce conflict
     const {regexType, regExp : customRegExp, ...safeProps} = props;
-    return (
-        <div>
-            <h1 ref={refContainer}>I am currently using the default</h1>
-            <input 
-                type="text" 
-                value={input} 
-                onChange={handleChange}
-                {...safeProps}
-            />
-        </div>
-    )
+    return <input 
+        type="text" 
+        value={input} 
+        onChange={handleChange}
+        {...safeProps}
+    />
+    
 }
 

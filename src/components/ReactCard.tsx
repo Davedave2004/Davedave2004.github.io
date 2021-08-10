@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ReactCard.scss';
 
 interface cardProps {
     title: string;
@@ -11,11 +12,14 @@ export function ReactCard(props: cardProps): JSX.Element {
     return (
         <div className="react-card">
             <section className="header">
-                <p className="title">{props.title}</p>
                 <img src={props.logoSrc} className="logo" alt="card logo"/>
+                <p className="title">{props.title}</p>
             </section>
-            <section>
-                <img className="id-picture" src={props.idSrc} alt="profile picture"/>
+            <section className="content">
+                <div>
+                    <img className="id-picture" src={props.idSrc} alt="profile"/>
+                    <p className="id-number">ID Number: 02020001</p>
+                </div>
                 <p className="name">{props.name}</p>
             </section>
         </div>
