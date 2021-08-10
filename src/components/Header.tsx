@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from '../img/logo.png';
 import '../styles/Header.scss';
+import {openNav} from './SideNav';
 
 type navItem = {
     label: string;
@@ -23,25 +24,6 @@ export function Header(props: headerProps) {
         href: '#top'
     }
 
-    const navItems: navItem[] = [
-        {
-            label: 'Top',
-            href: '#top'
-        },
-        {
-            label: 'Components',
-            href: '#components'
-        },
-        {
-            label: 'Card',
-            href: '#card'
-        },
-        {
-            label: 'To Do',
-            href: '#todo'
-        }
-    ];
-
     const [title] = useState(logoNav.label);
 
     return (
@@ -50,13 +32,9 @@ export function Header(props: headerProps) {
                 <img src={logoNav.src} alt="header logo" />
             </a>
             <label>{title}</label>
-            <nav>
-                <ul>
-                {navItems.map((item, index) => (
-                    <li key={index}><a className="navItem" href={item.href}>{item.label}</a></li>
-                ))}
-                </ul>
-            </nav>
+            <div onClick={openNav}>
+                <i className="fas fa-bars"></i>
+            </div>
       </header>
     )
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
+import {SideNav} from './components/SideNav';
 import { CustomInput } from './components/CustomInput';
 import { ReactCard } from './components/ReactCard';
 import { ToDoList } from './components/ToDoList';
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
       <div id="top" style={{paddingTop: '10vh'}}></div>
       <Header />
+      <SideNav />
       <section className="main-section">
         <h1>About this page</h1>
         <article>
