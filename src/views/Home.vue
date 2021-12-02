@@ -83,9 +83,9 @@ export default {
       ]
     },
     remLatest: [
-      { id: 15, name: 'Relax Time - Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/assets/images/rem-15.jpg" },
-      { id: 14, name: 'Winter Coat', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/assets/images/rem-14.jpg" },
-      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/assets/images/rem-13.jpg" }
+      { id: 15, name: 'Relax Time - Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-15.jpg" },
+      { id: 14, name: 'Winter Coat', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-14.jpg" },
+      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" }
     ]
   })
 }
