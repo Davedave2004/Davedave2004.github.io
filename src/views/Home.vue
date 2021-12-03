@@ -28,7 +28,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col v-for="item in remLatest" :key="item.id">
+        <v-col sm="6" md="4" v-for="item in remLatest" :key="item.id">
           <!-- TODO: Should I wrap this with  router-link or just programatically navigate -->
           <router-link :to="`/rem/${item.id}`">
             <v-card>
@@ -85,7 +85,9 @@ export default {
     remLatest: [
       { id: 15, name: 'Relax Time - Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-15.jpg" },
       { id: 14, name: 'Winter Coat', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-14.jpg" },
-      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" }
+      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" },
+      { id: 12, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" },
+      { id: 11, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" }
     ]
   })
 }
