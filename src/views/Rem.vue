@@ -4,8 +4,8 @@
 
         <v-row>
             <!-- Side Menu for searching/filtering -->
-            <v-col>Search/Filter</v-col>
-            <v-col>
+            <v-col md="3" offset-lg="1">Search/Filter</v-col>
+            <v-col md="9" lg="7">
                 <!-- Rem List -->
                 <v-row>
                     <v-col sm="6" md="4" v-for="item in rems" :key="item.id">
@@ -18,9 +18,14 @@
 </template>
 
 <script>
+import RemCard from '@/components/RemCard'
+
 export default {
     name: "Rem",
     title: 'Rem Gallery',
+    components: {
+        RemCard
+    },
     data: () => ({
         rems: [
             { id: 15, name: 'Relax Time: Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-15.jpg", owned: true },
