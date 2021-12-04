@@ -13,35 +13,42 @@
 
     <!-- About Me -->
     <v-sheet>
-      <h1>About Me</h1>
-      <p>This page is just me trying to make something out of Vue / Vuetify.</p>
-      <p>Currently, I am just trying out Vuetify by following a lesson from Scrimba(link here)</p>
+      <v-row>
+        <v-col>
+          <h1>About</h1>
+          <p>
+            This page is just me trying to make something out of Vue / Vuetify. Currently, I am just trying out Vuetify by following a
+            <a
+              href="https://scrimba.com/learn/vuetify"
+            >lesson from Scrimba.</a> I'll put random stuff also just to try things out.
+          </p>
+          <h3>Feel free to explore!</h3>
+        </v-col>
+        <v-col>
+          <p>If you want to learn more about me, click here!</p>
+          <p>If you want to see some Vuetify Components in action, click here!</p>
+        </v-col>
+      </v-row>
     </v-sheet>
 
-    <!-- Latest Rem Products -->
+    <!-- Random Rem Products -->
     <v-sheet>
       <v-row>
         <v-col>
           <h1>Rem Gallery</h1>
           <p>Rem is best girl. Wanna see more?</p>
-          <v-btn>Click here!</v-btn>
+          <v-btn to="/rem">Click here!</v-btn>
         </v-col>
       </v-row>
       <v-row>
         <v-col sm="6" md="4" v-for="item in remLatest" :key="item.id">
-          <!-- TODO: Should I wrap this with  router-link or just programatically navigate -->
-          <router-link :to="`/rem/${item.id}`">
-            <v-card>
-              <v-img :src="item.image" height="200px"></v-img>
-              <v-card-title>{{ item.name }}</v-card-title>
-            </v-card>
-          </router-link>
+          <RemCard :rem="item" />
         </v-col>
       </v-row>
     </v-sheet>
 
     <!-- About Mandarake -->
-    <v-sheet>
+    <v-sheet class="mb-12">
       <h1>Mochabricks and Mandarake</h1>
       <p>
         Mochabricks is a store where you can buy anime merch/figures and they also offer "pasa-buy" service if you have something you want in Mandarake(link here).
@@ -52,12 +59,36 @@
       <h2>Try it out here or go to its own page by clicking the link below</h2>
       <v-row>
         <v-col>
-          <v-row>
-            <v-col>Input price here</v-col>
-            <v-col>Input weight here</v-col>
-          </v-row>
+          <v-form ref="form" v-model="mandarake.valid" lazy-validation>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  v-model.number="mandarake.price"
+                  :rules="[rules.format, rules.morethanzero]"
+                  label="Price (Yen)"
+                  prefix="¥"
+                  outlined
+                  clearable
+                ></v-text-field>
+                <v-text-field
+                  v-model.number="mandarake.weight"
+                  :rules="[rules.format, rules.morethanzero]"
+                  label="Weight (grams)"
+                  outlined
+                  clearable
+                ></v-text-field>
+                <v-row>
+                  <v-spacer></v-spacer>
+                  <v-btn class="mr-3 mb-3" @click="computePrice">Compute</v-btn>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-form>
         </v-col>
-        <v-col>Total here</v-col>
+        <v-col>
+          <h3>Total Price (Pesos)</h3>
+          <v-sheet>{{ mandarake.totalPrice.toFixed(2) }}</v-sheet>
+        </v-col>
       </v-row>
     </v-sheet>
 
@@ -67,10 +98,14 @@
 </template>
 
 <script>
-
+import RemCard from '@/components/RemCard'
 
 export default {
   name: 'Home',
+  title: 'Davedave2004 GH Pages',
+  components: {
+    RemCard
+  },
   data: () => ({
     carousel: {
       model: 0,
@@ -83,12 +118,33 @@ export default {
       ]
     },
     remLatest: [
-      { id: 15, name: 'Relax Time - Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-15.jpg" },
-      { id: 14, name: 'Winter Coat', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-14.jpg" },
-      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" },
-      { id: 12, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" },
-      { id: 11, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg" }
-    ]
-  })
+      { id: 15, name: 'Relax Time - Ice Pop', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-15.jpg", owned: true },
+      { id: 14, name: 'Winter Coat', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-14.jpg", owned: true },
+      { id: 13, name: 'Memory Snow Dog Ears', image: "https://raw.githubusercontent.com/davedave2004/Davedave2004.github.io/develop/src/assets/images/rem-13.jpg", owned: true }
+    ],
+    mandarake: {
+      price: 0,
+      weight: 0,
+      totalPrice: 0,
+      valid: true
+    },
+    rules: {
+      required: (v) => !!v || 'Required',
+      morethanzero: (v) => v >= 0 || 'No negative values',
+      format: (v) => /^((0\.?)|([1-9]+\.?))[0-9]*$/.test(v) || 'Numbers/Decimals only'
+    }
+  }),
+  methods: {
+    computePrice: function () {
+      const isValid = this.$refs.form.validate();
+      console.log(isValid);
+      if (isValid) {
+        const computePrice = this.mandarake.price / 2;
+        const shippingPrice = this.mandarake.weight * 1.2;
+        const tax = (computePrice + shippingPrice) * 0.18;
+        this.mandarake.totalPrice = computePrice + shippingPrice + tax;
+      }
+    }
+  }
 }
 </script>
