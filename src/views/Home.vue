@@ -86,7 +86,7 @@
           </v-form>
         </v-col>
         <v-col>
-          <h3>Total Price (Pesos)</h3>
+          <h3>Total Price (Peso)</h3>
           <v-sheet>{{ mandarake.totalPrice.toFixed(2) }}</v-sheet>
         </v-col>
       </v-row>

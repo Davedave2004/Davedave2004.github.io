@@ -7,8 +7,8 @@
 export default {
   name: "About",
   title: 'About Me',
-  data: () => {
+  data: () => ({
 
-  }
+  })
 }
 </script>
