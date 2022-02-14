@@ -45,8 +45,10 @@
             </v-col>
           </v-row>
         </v-col>
-
+        <!-- Moving Rem -->
         <v-col cols="6">
+          <h2>Moving Rem</h2>
+          <p>Try dragging Rem and moving it.</p>
           <v-sheet outlined height="100%" class="mt-4" @mouseup="dragend">
             <img
               draggable="false"
