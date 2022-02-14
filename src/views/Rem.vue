@@ -23,6 +23,7 @@ import RemCard from '@/components/RemCard'
 export default {
     name: "Rem",
     title: 'Rem Gallery',
+    headerTitle: 'Rem Gallery',
     components: {
         RemCard
     },

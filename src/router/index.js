@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Rem from '../views/Rem.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +13,32 @@ const routes = [
   {
     path: '/rem',
     name: 'Rem',
-    component: Rem
+    component: () => import(/* webpackChunkName: "rem" */ '../views/Rem.vue')
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/Shop.vue')
+  },
+  {
+    path: '/shop/all',
+    name: 'ShopAll',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/ShopAll.vue')
+  },
+  {
+    path: '/shop/cart',
+    name: 'ShopCart',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/ShopCart.vue')
+  },
+  {
+    path: '/shop/checkout',
+    name: 'ShopCheckout',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/ShopCheckout.vue')
+  },
+  {
+    path: '/shop/checkout/finish',
+    name: 'ShopCheckoutFinish',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/ShopCheckoutFinish.vue')
   },
   {
     path: '/about',

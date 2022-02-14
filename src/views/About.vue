@@ -7,6 +7,7 @@
 export default {
   name: "About",
   title: 'About Me',
+  headerTitle: 'About Me',
   data: () => ({
 
   })
